@@ -55,12 +55,15 @@ for dbn in *.nin; do
     echo "Generated $out"
 done
 
-# 6) Merge all results into a single TSV
+# 6) Merge all results into a single TSV, skipping the merge-file itself
 echo ">>> Merging results into all_vs_targets.tsv..."
 {
   printf "sample\tqseqid\tsseqid\tpident\tlength\tqstart\tqend\tsstart\tsend\tevalue\tbitscore\n"
   for tsv in *_vs_targets.tsv; do
-    [ "$tsv" = "all_vs_targets.tsv" ] && continue
+    # skip the file we're about to create
+    if [[ "$tsv" == "all_vs_targets.tsv" ]]; then
+      continue
+    fi
     sample="${tsv%_vs_targets.tsv}"
     sed "s/^/${sample}\t/" "$tsv"
   done
