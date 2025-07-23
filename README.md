@@ -24,6 +24,10 @@ This pipeline processes Sanger sequencing results (ABI `.ab1` files) and searche
 - `python3` with Biopython installed  
 - `seqkit` (with the `fq2fa` subcommand)  
 - BLAST+ tools (`makeblastdb`, `blastn`)
+- Alternatively, install all at once:
+  ```bash
+  conda create -n SeqFinder_env python=3.11 biopython seqkit blast -c conda-forge -c bioconda -y
+  ```
 
 ## Usage
 
