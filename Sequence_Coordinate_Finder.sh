@@ -67,6 +67,6 @@ echo ">>> Merging results into all_vs_targets.tsv..."
     sample="${tsv%_vs_targets.tsv}"
     sed "s/^/${sample}\t/" "$tsv"
   done
-} > all_vs_targets.tsv
+} | sort -t$'\t' -k1,1V > all_vs_targets.tsv
 
 echo ">>> Pipeline complete. Output: all_vs_targets.tsv"
